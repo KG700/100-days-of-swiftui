@@ -6,10 +6,10 @@ drink. When the user presses calculate, the application uses a machine model to 
 to the user in an alert.
 
 <p align="center">
-  <img width="30%" src="https://user-images.githubusercontent.com/57043346/220992757-86e9faaa-2205-4a7a-9d96-0aa42108ec06.png">
+  <img width="30%" src="https://user-images.githubusercontent.com/57043346/221241084-d9334818-03f8-482c-9e45-6b96c661cb40.png">
 </p>
 
-## What I learned:![Simulator Screen Shot - iPhone 14 Pro - 2023-02-23 at 18 03 23]
+## What I learned:
 
 - How to work with `CoreML` to create machine learning models and how to use these in an app.
 - How to use `Date` and to use `DateComponents` if you require components of a date such as hours or minutes.
