@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var score = 0
     
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -22,6 +23,12 @@ struct ContentView: View {
                 Section {
                     TextField("Enter your word", text: $newWord)
                         .autocapitalization(.none)
+                }
+                
+                Section {
+                    Text("score: \(score)")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .font(.headline)
                 }
                 
                 Section {
@@ -75,7 +82,9 @@ struct ContentView: View {
         withAnimation {
             usedWords.insert(answer, at: 0)
         }
+        score += newWord.count
         newWord = ""
+        
     }
     
     func startGame() {
@@ -84,6 +93,7 @@ struct ContentView: View {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
                 usedWords = []
+                score = 0
                 return
             }
         }
