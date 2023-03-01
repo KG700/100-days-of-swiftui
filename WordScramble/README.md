@@ -8,7 +8,7 @@ the 8 letter root word, and is a word in the dictionary. The user receives an al
 wasn't accepted.
 
 <p align="center">
-  <img width="30%" src="https://user-images.githubusercontent.com/57043346/221672826-a26650fe-bc05-45c4-a530-685f8bf46e6a.png">
+  <kbd><img width="30%" src="https://user-images.githubusercontent.com/57043346/222247884-e97fbfcb-f5f9-4674-b6f2-269023151864.png"></kbd>
 </p>
 
 ## What I learned:
