@@ -19,29 +19,37 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    TextField("Enter your word", text: $newWord)
-                        .autocapitalization(.none)
-                }
-                
-                Section {
+            VStack {
+                HStack {
+                    Text(rootWord)
+                        .font(.largeTitle).bold()
+                    
+                    Spacer()
+                    
                     Text("score: \(score)")
-                        .frame(maxWidth: .infinity, alignment: .center)
                         .font(.headline)
                 }
+                .padding()
                 
-                Section {
-                    ForEach(usedWords, id:\.self) { word in
-                        HStack {
-                            Image(systemName: "\(word.count).circle.fill")
-                            Text(word)
+                List {
+                    Section {
+                        TextField("Enter your word", text: $newWord)
+                            .autocapitalization(.none)
+                    }
+                    
+                    
+                    Section {
+                        ForEach(usedWords, id:\.self) { word in
+                            HStack {
+                                Image(systemName: "\(word.count).circle.fill")
+                                Text(word)
+                            }
+                            
                         }
-                        
                     }
                 }
+                .listStyle(.plain)
             }
-            .navigationTitle(rootWord)
             .onSubmit(addNewWord)
             .onAppear(perform: startGame)
             .alert(errorTitle, isPresented: $showingError) {
