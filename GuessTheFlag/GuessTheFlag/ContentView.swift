@@ -38,6 +38,9 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     @State private var score = 0
     @State private var questionNumber = 0
+    @State private var spinAmount = [0.0, 0.0, 0.0]
+    @State private var opacityAmount = [1.0, 1.0, 1.0]
+    @State private var scaleAmount = [1.0, 1.0, 1.0]
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -72,9 +75,21 @@ struct ContentView: View {
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
+                            withAnimation {
+                                spinAmount[number] += 360
+                                for num in 0..<3 {
+                                    if (num != number) {
+                                        opacityAmount[num] = 0.25
+                                        scaleAmount[num] = 0.75
+                                    }
+                                }
+                            }
                         } label: {
                             FlagImage(image: countries[number])
                         }
+                        .scaleEffect(scaleAmount[number])
+                        .rotation3DEffect(.degrees(spinAmount[number]), axis: (x: 0, y: 1, z: 0))
+                        .opacity(opacityAmount[number])
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -124,6 +139,12 @@ struct ContentView: View {
         } else {
             countries.shuffle()
             correctAnswer = Int.random(in: 0...2)
+            withAnimation {
+                for number in 0..<3 {
+                    opacityAmount[number] = 1.0
+                    scaleAmount[number] = 1.0
+                }
+            }
         }
     }
     
@@ -132,6 +153,12 @@ struct ContentView: View {
         questionNumber = 0
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        withAnimation {
+            for number in 0..<3 {
+                opacityAmount[number] = 1.0
+                scaleAmount[number] = 1.0
+            }
+        }
     }
 }
 
