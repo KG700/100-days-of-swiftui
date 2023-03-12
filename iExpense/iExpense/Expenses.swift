@@ -26,4 +26,12 @@ class Expenses: ObservableObject {
         
         items = []
     }
+    
+    func personalItems() -> [ExpenseItem] {
+        return self.items.filter { $0.type == "Personal" }
+    }
+    
+    func businessItems() -> [ExpenseItem] {
+        return self.items.filter { $0.type == "Business" }
+    }
 }

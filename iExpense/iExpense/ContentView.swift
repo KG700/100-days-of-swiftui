@@ -3,7 +3,7 @@
 //  iExpense
 //
 //  Created by Karla Gardiner on 10/03/2023.
-//
+//
 
 import SwiftUI
 
@@ -14,21 +14,26 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.type)
-                        }
+                Section("Business Expenses") {
+                    ForEach(expenses.businessItems()) { item in
+                        ExpenseItemView(item: item)
                         
-                        Spacer()
-                        
-                        Text(item.amount, format: .currency(code: "USD"))
                     }
-                    
+                    .onDelete { indexSet in
+                        removeItems(at: indexSet, type: "Business")
+                    }
                 }
-                .onDelete(perform: removeItems)
+                
+                Section("Personal Expenses") {
+                    ForEach(expenses.personalItems()) { item in
+                        ExpenseItemView(item: item)
+                        
+                    }
+                    .onDelete { indexSet in
+                        removeItems(at: indexSet, type: "Personal")
+                    }
+                }
+                
             }
             .navigationTitle("iExpense")
             .toolbar {
@@ -44,9 +49,28 @@ struct ContentView: View {
         }
     }
     
-    func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+    func removeItems(at offsets: IndexSet, type: String ) {
+        var items: [ExpenseItem]
+        switch type {
+        case "Personal":
+            items = expenses.personalItems()
+        case "Business":
+            items = expenses.businessItems()
+        default:
+            items = []
+        }
+        
+        for index in offsets {
+            if let expenseIndex = expenses.items.firstIndex(of: items[index]) {
+                expenses.items.remove(at: expenseIndex)
+            }
+            
+        }
     }
+    
+//    func removeItems(at offsets: IndexSet) {
+//        expenses.items.remove(atOffsets: offsets)
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
