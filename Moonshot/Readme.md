@@ -5,6 +5,8 @@ The application displays the Apollo missions, which can be clicked on to display
 
 <p align="center">
   <img width="30%" src="https://user-images.githubusercontent.com/57043346/225128865-a7ec1fd8-7e93-47d4-828c-703324260ab5.png">
+  <img width="30%" src="https://user-images.githubusercontent.com/57043346/225445729-209fcdca-ec73-4546-8690-7102805c326a.png">
+  <img width="30%" src="https://user-images.githubusercontent.com/57043346/225445366-3c077d30-e659-4935-8542-40a203cfe568.png">
 </p>
 
 
@@ -18,3 +20,4 @@ decoded. Also learned how to do this with generically for all data types.
 - You can imbed a struct inside a struct. This can be a useful way to keep your code tidy if you're defining a struct that's specifically for another
 struct, which often happens when defining data.
 - A good way to set colour themes is to create an extension to the `ShapeStyle`.
+- Merge data from different sources by adding a custom initialiser to a view.
